@@ -7,14 +7,14 @@ static const unsigned int gappx     = 10;       /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=12", "JoyPixels:pixelsize=24:antialias=true:autohint=true" };
+static const char *fonts[]          = { "monospace:size=12", "iconmoon-feather:size=12" };
 static const char dmenufont[]       = "monospace:size=12";
 
 /* Pywal colors */
-#include "/home/nipun/.cache/wal/colors-wal-dwm.h"
+#include "/home/rbt/.cache/wal/colors-wal-dwm.h"
 
 /* tagging */
-static const char *tags[] = { "•", "•", "•", "•", "•", "•", "•", "•", "•" };
+static const char *tags[] = { "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -51,7 +51,7 @@ static const Layout layouts[] = {
 
 /* Dmenu controls */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-l", "20", "-fn", dmenufont, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, NULL };
 
 /* Terminal control*/
 static const char *termcmd[]  = { "st", NULL };
