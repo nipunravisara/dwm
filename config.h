@@ -2,19 +2,20 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
+static const int user_bh = 40; 			/* bar height */
 static const unsigned int borderpx  = 5;        /* border pixel of windows */
 static const unsigned int gappx     = 10;       /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=12", "iconmoon-feather:size=12" };
+static const char *fonts[]          = { "monospace:size=12", "icomoon-feather:size=25" };
 static const char dmenufont[]       = "monospace:size=12";
 
 /* Pywal colors */
 #include "/home/rbt/.cache/wal/colors-wal-dwm.h"
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "" };
+static const char *tags[] = { "•", "•", "•", "•", "•" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -53,8 +54,11 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, NULL };
 
+/* Rofi controls */
+static const char *applicationmenu[]  = { "rofi", "-show", "drun", NULL };
+
 /* Terminal control*/
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
 
 /* Audio controls */
 static const char *mutecmd[] = { "pamixer", "-t", NULL };
@@ -123,7 +127,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_a,      spawn,          {.v = themeswitcher} },
 	{ MODKEY,                       XK_w,      spawn,          {.v = wifimenu } },
 	{ MODKEY,                       XK_l,      spawn,          {.v = slock } },
-	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_d,      spawn,          {.v = applicationmenu } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = flameshotgui} },
 	{ 0,                            XF86XK_AudioMute, spawn,   {.v = mutecmd } },
 	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
