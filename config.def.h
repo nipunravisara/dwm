@@ -8,7 +8,7 @@ static const unsigned int gappx     = 20;       /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Fira code:size=11", "Material Icons:size=12" };
+static const char *fonts[]          = { "scientifica:size=12", "Material Icons:size=12" };
 static const char dmenufont[]       = "monospace:size=12";
 
 /* Pywal colors */
