@@ -4,18 +4,19 @@
 /* appearance */
 static const int user_bh = 40; 			/* bar height */
 static const unsigned int borderpx  = 5;        /* border pixel of windows */
-static const unsigned int gappx     = 10;       /* gaps between windows */
+static const unsigned int gappx     = 20;       /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=12", "icomoon-feather:size=25" };
+static const char *fonts[]          = { "Fira code:size=11", "Material Icons:size=12" };
 static const char dmenufont[]       = "monospace:size=12";
 
 /* Pywal colors */
 #include "/home/rbt/.cache/wal/colors-wal-dwm.h"
 
 /* tagging */
-static const char *tags[] = { "•", "•", "•", "•", "•" };
+/* static const char *tags[] = { "dev", "web", "file", "mus", "mon" }; */
+static const char *tags[] = { "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -34,9 +35,9 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	{ "   ",      tile },    /* first entry is default */
+	{ "   ",      NULL },    /* no layout function means floating behavior */
+	{ "   [M]",      monocle },
 };
 
 /* key definitions */
@@ -50,10 +51,6 @@ static const Layout layouts[] = {
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
-/* Dmenu controls */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, NULL };
-
 /* Rofi controls */
 static const char *applicationmenu[]  = { "rofi", "-show", "drun", NULL };
 
@@ -66,8 +63,8 @@ static const char *volupcmd[] = { "pamixer", "-i", "10", "0", NULL };
 static const char *voldowncmd[] = { "pamixer", "-d", "10", "0", NULL };
 
 /* Backlight conrol */
-static const char *brupcmd[] = { "light", "-A", "10", NULL };
-static const char *brdowncmd[] = { "light", "-U", "10", NULL };
+static const char *brightnessup[] = { "brightness", "up", NULL };
+static const char *brightnessdown[] = { "brightness", "down", NULL };
 
 /* Flameshot control */
 static const char *flameshotgui[] = { "flameshot", "gui", NULL };
@@ -76,7 +73,7 @@ static const char *flameshotgui[] = { "flameshot", "gui", NULL };
 static const char *slock[] = { "slock" };
 
 /* Wifi menu */
-static const char *wifimenu[] = { "dwmwifimenu" , NULL};
+static const char *wifimenu[] = { "wifimenu" , NULL};
 
 /* Theme switcher */
 static const char *themeswitcher[] = { "themeswitcher" , NULL};
@@ -132,8 +129,8 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioMute, spawn,   {.v = mutecmd } },
 	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
 	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd } },
-	{ 0,                            XF86XK_MonBrightnessUp, spawn, {.v = brupcmd} },
-	{ 0,                            XF86XK_MonBrightnessDown, spawn, {.v = brdowncmd} },
+	{ 0,                            XF86XK_MonBrightnessUp, spawn, {.v = brightnessup} },
+	{ 0,                            XF86XK_MonBrightnessDown, spawn, {.v = brightnessdown} },
 };
 
 /* button definitions */
@@ -142,7 +139,6 @@ static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
