@@ -2,14 +2,14 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const int user_bh = 40; 			/* bar height */
+static const int user_bh = 50; 			/* bar height */
 static const unsigned int borderpx  = 5;        /* border pixel of windows */
 static const unsigned int gappx     = 20;       /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "scientifica:size=12", "Material Icons:size=12" };
-static const char dmenufont[]       = "monospace:size=12";
+static const char *fonts[]          = { "Free Pixel=12", "Material Icons:size=14" };
+static const char dmenufont[]       = "Free Pixel:size=12";
 
 /* Pywal colors */
 #include "/home/rbt/.cache/wal/colors-wal-dwm.h"
@@ -66,8 +66,8 @@ static const char *voldowncmd[] = { "pamixer", "-d", "10", "0", NULL };
 static const char *brightnessup[] = { "brightness", "up", NULL };
 static const char *brightnessdown[] = { "brightness", "down", NULL };
 
-/* Flameshot control */
-static const char *flameshotgui[] = { "flameshot", "gui", NULL };
+/* Screenshot control */
+static const char *screenshot[] = { "screenshot", NULL };
 
 /* Lock screen control */
 static const char *slock[] = { "slock" };
@@ -79,8 +79,8 @@ static const char *wifimenu[] = { "wifimenu" , NULL};
 static const char *themeswitcher[] = { "themeswitcher" , NULL};
 
 /* Eww contols */
-static const char *openeww[] = {"eww", "open-many", "background", "profile", "time", "logout", "poweroff", "restart", "lock", "files", "code", "system", "twitter", "gmail", "firefox", "music", "memory", NULL};
-static const char *closeeww[] = {"eww", "close-all", NULL};
+static const char *openeww[] = { "eww", "open-many", "background", "profile", "time", "logout", "poweroff", "restart", "lock", "files", "code", "system", "twitter", "gmail", "firefox", "music", "memory", NULL };
+static const char *closeeww[] = { "eww", "close-all", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -119,13 +119,13 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY,	                XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_e,      spawn,          {.v = openeww} },
-	{ MODKEY,                       XK_r,      spawn,          {.v = closeeww} },
+	{ MODKEY,                       XK_e,      spawn,          {.v = openeww } },
+	{ MODKEY,                       XK_r,      spawn,          {.v = closeeww } },
 	{ MODKEY,                       XK_a,      spawn,          {.v = themeswitcher} },
 	{ MODKEY,                       XK_w,      spawn,          {.v = wifimenu } },
 	{ MODKEY,                       XK_l,      spawn,          {.v = slock } },
 	{ MODKEY,                       XK_d,      spawn,          {.v = applicationmenu } },
-	{ MODKEY,                       XK_s,      spawn,          {.v = flameshotgui} },
+	{ MODKEY,                       XK_s,      spawn,          {.v = screenshot } },
 	{ 0,                            XF86XK_AudioMute, spawn,   {.v = mutecmd } },
 	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
 	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd } },
