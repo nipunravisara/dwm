@@ -4,12 +4,12 @@
 /* appearance */
 static const int user_bh = 50; 			/* bar height */
 static const unsigned int borderpx  = 5;        /* border pixel of windows */
-static const unsigned int gappx     = 20;       /* gaps between windows */
+static const unsigned int gappx     = 25;       /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Free Pixel=12", "Material Icons:size=14" };
-static const char dmenufont[]       = "Free Pixel:size=12";
+static const char *fonts[]          = { "SF Mono=12", "Material Icons:size=14" };
+static const char dmenufont[]       = "SF Mono:size=12";
 
 /* Pywal colors */
 #include "/home/rbt/.cache/wal/colors-wal-dwm.h"
@@ -58,13 +58,13 @@ static const char *applicationmenu[]  = { "rofi", "-show", "drun", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 
 /* Audio controls */
-static const char *mutecmd[] = { "pamixer", "-t", NULL };
-static const char *volupcmd[] = { "pamixer", "-i", "10", "0", NULL };
-static const char *voldowncmd[] = { "pamixer", "-d", "10", "0", NULL };
+static const char *mutecmd[] = { "volume", "--m", NULL };
+static const char *volupcmd[] = { "volume", "--inc", NULL };
+static const char *voldowncmd[] = { "volume", "--dec", NULL };
 
 /* Backlight conrol */
-static const char *brightnessup[] = { "brightness", "up", NULL };
-static const char *brightnessdown[] = { "brightness", "down", NULL };
+static const char *brightnessup[] = {"brightness", "--inc", NULL  };
+static const char *brightnessdown[] = { "brightness", "--dec", NULL  };
 
 /* Screenshot control */
 static const char *screenshot[] = { "screenshot", NULL };
