@@ -1,28 +1,23 @@
 /* See LICENSE file for copyright and license details. */
 #include <X11/XF86keysym.h>
 
+/* pywal colors */
+#include "/home/rbt/.cache/wal/colors-wal-dwm.h"
+
 /* appearance */
-static const int user_bh = 50; 			/* bar height */
+static const int user_bh 			= 50; 		/* bar height */
 static const unsigned int borderpx  = 5;        /* border pixel of windows */
 static const unsigned int gappx     = 25;       /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "SF Mono=12", "Material Icons:size=14" };
-static const char dmenufont[]       = "SF Mono:size=12";
-
-/* Pywal colors */
-#include "/home/rbt/.cache/wal/colors-wal-dwm.h"
+static const char *fonts[]          = { "Overpass-Mono-Bold=12" };
+static const char dmenufont[]       = "Overpass-Mono-Bold:size=12";
 
 /* tagging */
-/* static const char *tags[] = { "dev", "web", "file", "mus", "mon" }; */
-static const char *tags[] = { "", "", "", "", "" };
+static const char *tags[] = { "dev", "web", "file", "mus", "mon" };
 
 static const Rule rules[] = {
-	/* xprop(1):
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
-	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
@@ -35,9 +30,9 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "   ",      tile },    /* first entry is default */
-	{ "   ",      NULL },    /* no layout function means floating behavior */
-	{ "   [M]",      monocle },
+	{ "[t]",      tile },    /* first entry is default */
+	{ "[f]",      NULL },    /* no layout function means floating behavior */
+	{ "[m]",      monocle },
 };
 
 /* key definitions */
@@ -52,7 +47,7 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* Rofi controls */
-static const char *applicationmenu[]  = { "rofi", "-show", "drun", NULL };
+static const char *applicationmenu[]  = { "applicationmenu", NULL };
 
 /* Terminal control*/
 static const char *termcmd[]  = { "alacritty", NULL };
@@ -74,9 +69,6 @@ static const char *slock[] = { "slock" };
 
 /* Wifi menu */
 static const char *wifimenu[] = { "wifimenu" , NULL};
-
-/* Theme switcher */
-static const char *themeswitcher[] = { "themeswitcher" , NULL};
 
 /* Eww contols */
 static const char *openeww[] = { "eww", "open-many", "background", "profile", "time", "logout", "poweroff", "restart", "lock", "files", "code", "system", "twitter", "gmail", "firefox", "music", "memory", NULL };
@@ -118,13 +110,12 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ MODKEY,	                XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,	                XK_Return, spawn,          {.v = applicationmenu } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = openeww } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = closeeww } },
-	{ MODKEY,                       XK_a,      spawn,          {.v = themeswitcher} },
+	{ MODKEY,                       XK_a,      spawn,          {.v = termcmd} },
 	{ MODKEY,                       XK_w,      spawn,          {.v = wifimenu } },
 	{ MODKEY,                       XK_l,      spawn,          {.v = slock } },
-	{ MODKEY,                       XK_d,      spawn,          {.v = applicationmenu } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = screenshot } },
 	{ 0,                            XF86XK_AudioMute, spawn,   {.v = mutecmd } },
 	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
@@ -149,3 +140,73 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
 
+void
+setlayoutex(const Arg *arg)
+{
+	setlayout(&((Arg) { .v = &layouts[arg->i] }));
+}
+
+void
+viewex(const Arg *arg)
+{
+	view(&((Arg) { .ui = 1 << arg->ui }));
+}
+
+void
+viewall(const Arg *arg)
+{
+	view(&((Arg){.ui = ~0}));
+}
+
+void
+toggleviewex(const Arg *arg)
+{
+	toggleview(&((Arg) { .ui = 1 << arg->ui }));
+}
+
+void
+tagex(const Arg *arg)
+{
+	tag(&((Arg) { .ui = 1 << arg->ui }));
+}
+
+void
+toggletagex(const Arg *arg)
+{
+	toggletag(&((Arg) { .ui = 1 << arg->ui }));
+}
+
+void
+tagall(const Arg *arg)
+{
+	tag(&((Arg){.ui = ~0}));
+}
+
+/* signal definitions */
+/* signum must be greater than 0 */
+/* trigger signals using `xsetroot -name "fsignal:<signame> [<type> <value>]"` */
+static Signal signals[] = {
+	/* signum           function */
+	{ "focusstack",     focusstack },
+	{ "setmfact",       setmfact },
+	{ "togglebar",      togglebar },
+	{ "incnmaster",     incnmaster },
+	{ "togglefloating", togglefloating },
+	{ "focusmon",       focusmon },
+	{ "tagmon",         tagmon },
+	{ "zoom",           zoom },
+	{ "view",           view },
+	{ "viewall",        viewall },
+	{ "viewex",         viewex },
+	{ "toggleview",     view },
+	{ "toggleviewex",   toggleviewex },
+	{ "tag",            tag },
+	{ "tagall",         tagall },
+	{ "tagex",          tagex },
+	{ "toggletag",      tag },
+	{ "toggletagex",    toggletagex },
+	{ "killclient",     killclient },
+	{ "quit",           quit },
+	{ "setlayout",      setlayout },
+	{ "setlayoutex",    setlayoutex },
+};
