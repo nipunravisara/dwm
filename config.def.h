@@ -20,10 +20,14 @@ static const int nmaster     		= 1;    	// number of clients in master area
 static const int resizehints 		= 1;    	// 1 means respect size hints in tiled resizals 
 
 // tagging 
-static const char *tags[] 			= { "dev", "web", "file", "mus", "mon" };
+static const char *tags[] 			= { "•", "•", "•", "•", "•" };
 
 // rules
-static const Rule rules[0];
+
+static const Rule rules[] = {
+	/* class      instance    title       tags mask     isfloating   monitor */
+	{ "firefox",  NULL,       NULL,       2,       		0,           	1 },
+};
 
 // keys
 static Key keys[0];

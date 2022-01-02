@@ -20,10 +20,14 @@ static const int nmaster     		= 1;    	// number of clients in master area
 static const int resizehints 		= 1;    	// 1 means respect size hints in tiled resizals 
 
 // tagging 
-static const char *tags[] 			= { "dev", "web", "file", "mus", "mon" };
+static const char *tags[] 			= { "•", "•", "•", "•", "•" };
 
 // rules
-static const Rule rules[0];
+
+static const Rule rules[] = {
+	/* class      instance    title       tags mask     isfloating   monitor */
+	{ "firefox",  NULL,       NULL,       2,       		0,           	1 },
+};
 
 // keys
 static Key keys[0];
@@ -46,26 +50,25 @@ static const Layout layouts[] = {
 // helper for spawning shell commands in the pre dwm-5.0 fashion 
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
-static Button buttons[0];
 // button definitions 
-// static Button buttons[] = {
-// 	// click                event mask      button          function        argument 
-// 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
-// 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-// 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
-// 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
-// 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
-// 	{ ClkTagBar,            0,              Button1,        view,           {0} },
-// 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
-// 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
-// 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
-// };
+static Button buttons[] = {
+	// click                event mask      button          function        argument 
+	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
+	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
+	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
+	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
+	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
+	{ ClkTagBar,            0,              Button1,        view,           {0} },
+	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
+	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
+	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+};
 
-void
-moveWindow(const Arg *arg)
-{
-	movemouse({0})
-}
+// void
+// moveWindow(const Arg *arg)
+// {
+// 	movemouse(&((Arg) {0})
+// }
 
 void
 setlayoutex(const Arg *arg)
