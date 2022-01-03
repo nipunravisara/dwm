@@ -25,8 +25,9 @@ static const char *tags[] 			= { "•", "•", "•", "•", "•" };
 // rules
 
 static const Rule rules[] = {
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "firefox",  NULL,       NULL,       2,       		0,           	1 },
+	/* class              	 instance    title       tags mask   isfloating    monitor */
+	{ "firefox",          	NULL,       NULL,       2,       		0,           	1 },
+  	{ "telegram-desktop", NULL,       NULL,       5,          	  0,              1 }
 };
 
 // keys
@@ -36,7 +37,7 @@ static const Layout layouts[] = {
 	// symbol     arrange function 
 	{ "[t]",      tile },    					// first entry is default 
 	{ "[f]",      NULL },    					// no layout function means floating behavior 
-	{ "[m]",      monocle },
+	{ "[m]",      monocle },					// full screen behavior
 };
 
 // key definitions 
