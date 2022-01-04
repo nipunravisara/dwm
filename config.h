@@ -5,14 +5,13 @@
 #include "/home/rbt/.cache/wal/colors-wal-dwm.h"
 
 // appearance 
-static const int user_bh 			= 50; 		// bar height 
+static const int user_bh 			= 60; 		// bar height 
 static const unsigned int borderpx  = 5;        // border pixel of windows 
-static const unsigned int gappx     = 5;        // gaps between windows 
+static const unsigned int gappx     = 0;        // gaps between windows 
 static const unsigned int snap      = 32;       // snap pixel 
 static const int showbar            = 1;        // 0 means no bar 
 static const int topbar             = 1;        // 0 means bottom bar 
-static const char *fonts[]          = { "OverpassMono Nerd Font=12" };
-static const char dmenufont[]       = "OverpassMono Nerd Font:size=12";
+static const char *fonts[]          = { "OverpassMono Nerd Font:size=12" };
 
 // layout(s) 
 static const float mfact     		= 0.55; 	// factor of master area size [0.05..0.95] 
@@ -20,14 +19,15 @@ static const int nmaster     		= 1;    	// number of clients in master area
 static const int resizehints 		= 1;    	// 1 means respect size hints in tiled resizals 
 
 // tagging 
-static const char *tags[] 			= { "•", "•", "•", "•", "•" };
+static const char *tags[] 			= { "", "", "", "", "" };
 
 // rules
-
 static const Rule rules[] = {
 	/* class              instance    title       tags mask   isfloating    monitor */
-	{ "firefox",          NULL,       NULL,       2,       		0,           	1 },
-  { "telegram-desktop", NULL,       NULL,       5,          0,            1 }
+    { "code-oss",           NULL,       NULL,       1,          0,            1 },
+	{ "firefox",            NULL,       NULL,       2,       	0,            1 },
+	{ "Chromium",            NULL,       NULL,       2,       	0,            1 },
+    { "TelegramDesktop",    NULL,       NULL,       5,          0,            1 }
 };
 
 // keys
@@ -35,9 +35,9 @@ static Key keys[0];
 
 static const Layout layouts[] = {
 	// symbol     arrange function 
-	{ "[t]",      tile },    					// first entry is default 
-	{ "[f]",      NULL },    					// no layout function means floating behavior 
-	{ "[m]",      monocle },
+	{ "",      tile },    					// first entry is default 
+	{ "",      NULL },    					// no layout function means floating behavior 
+	{ "",      monocle },
 };
 
 // key definitions 
